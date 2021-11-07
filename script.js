@@ -1,4 +1,3 @@
-
 var passwordCapital = "";
 var passwordLowercase = "";
 var passwordNumeric = "";
