@@ -33,7 +33,7 @@ generateBtn.addEventListener("click",alertWindow);
     var lengthIP = prompt("How long is your Password you need ? Please choose between 8 to 128 Characters"); 
     
    
-    if (lengthIP >8 && lengthIP < 128 ) {
+    if (lengthIP >7 && lengthIP < 129 ) {
 
         // choose the criteria of password. 
         var LowerCheck = confirm ("Do you want Lowercase characters ?");
