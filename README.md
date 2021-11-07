@@ -1,5 +1,3 @@
-# challenge-3
-
 3. JavaScript Challenge: Password Generator
 
 User Story
