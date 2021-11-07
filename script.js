@@ -1,80 +1,109 @@
-var passwordCapital = "";
-var passwordLowercase = "";
-var passwordNumeric = "";
-var passwordSpecial = "";
-var capital = "ABCDEFGHIJKLMNOPQURSTUVWXYZ";
-var lower = "abcdefghijklmnopqrstuvwxyz";
-var numeric = "1234567890";
-var special = "!@#$%&*_+-=?";
-var passString = "";
-var passResult = "";
-//textArea displays the password on screen
-var textArea = document.getElementById("password");
-
-function characterTypes() {
-  var passwordCapital = confirm("would you like to include uppercase letters?");
-  var passwordLowercase = confirm("would you like to include lowercase letters?");
-  var passwordNumeric = confirm("would you like to include numbers?");
-  var passwordSpecial = confirm("would you like to include special characters?");
-  if (passwordCapital === true || passwordLowercase === true || passwordNumeric === true || passwordSpecial === true) {
-    //if uppercase letters are chosen, its added to the variable "passString"
-    if (passwordCapital === true) {
-      passString += capital
-    }
-    //if lowercase letters are chosen, its added to the variable "passString"
-    if (passwordLowercase === true) {
-      passString += lower
-    }
-    //if numbers are chosen, its added to the variable "passString"
-    if (passwordNumeric === true) {
-      passString += numeric
-    }
-    //if special characters are chosen, its added to the variable "passString"
-    if (passwordSpecial === true) {
-      passString += special
-    }
-
-  }
-  // This else statement alerts if none of the variables were chosen and loops back to the beginning of characterTypes function
-  else {
-    alert("Please choose at least one character type.")
-    characterTypes()
-  };
-}
+// Assignment code here
 
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
+const lowercaseAlphabetChar = "abcdefghijklmnopqrstuvwxyz";
+const uppercaseAlphabetChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+const numericChar = "0123456789";
+const specialChar = " !@#$%^&*?/:'";
+var pSelection = "";
+var password = "";
 
+
+                                                                        
 // Write password to the #password input
 function writePassword() {
-  var text = '';
-  // function questions allows for the prompt to loop back if a value less than 8 or greater than 128 was chosen
-  function questions() {
-    var passwordLength = prompt("How long would you like your password to be? Please choose a number between 8 characters to 128 characters.");
-    if (parseInt(passwordLength) >= 8 && parseInt(passwordLength) <= 128) {
-      characterTypes()
-      //
-      for (let i = 0; i < passwordLength; i++) {
-        let x = passString[Math.floor(Math.random() * passString.length)]
-        passResult += x;
-      }
-      console.log(passResult);
-      console.log(textArea);
-      text = document.createTextNode(passResult);
-      //removes old password in the instance "generate password" was clicked after the first was made
-      textArea.innerHTML = '';
-      textArea.appendChild(text);
-      passResult = '';
+  var password = generatePassword();
+  var passwordText = document.querySelector("#password");  
 
-    };
+  passwordText.value = password;
+
+  } 
+    
+  // Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
+generateBtn.addEventListener("click",alertWindow);
+
+// Write generatePassword function 
+
+ function generatePassword() {
+    
+    var lengthIP = prompt("How long is your Password you need ? Please choose between 8 to 128 Characters"); 
+    
+   
+    if (lengthIP >8 && lengthIP < 128 ) {
+
+        // choose the criteria of password. 
+        var LowerCheck = confirm ("Do you want Lowercase characters ?");
+        var UpperCheck = confirm ("Do you want Uppercase characters ?");
+        var NumberCheck = confirm ("Do you want Number characters ?");
+        var SpecialCheck = confirm ("Do you want Special characters ?");
 
 
-  }
-  questions()
+
+        if (!LowerCheck && !UpperCheck  && !NumberCheck && !SpecialCheck) {
+            window.alert ("Please choose at least one type of character. Try again") ;
+            return; 
+           
+        }  else if (LowerCheck && !UpperCheck && !NumberCheck && !SpecialCheck)
+            {pSelection = lowercaseAlphabetChar ;
+            
+            
+            }else if (LowerCheck && UpperCheck && !NumberCheck && !SpecialCheck) {
+                pSelection = lowercaseAlphabetChar + uppercaseAlphabetChar;
+                
+    
+            }
+            else if (LowerCheck && UpperCheck && NumberCheck && !SpecialCheck) {
+                pSelection = lowercaseAlphabetChar + uppercaseAlphabetChar + numericChar;
+                
+                
+            } else if (!LowerCheck && UpperCheck && !NumberCheck && !SpecialCheck) {
+                pSelection = uppercaseAlphabetChar;
+                
+           } else if (!LowerCheck && !UpperCheck && NumberCheck && !SpecialCheck) {
+                pSelection = numericChar ;
+                
+           } else if (!LowerCheck && !UpperCheck && !NumberCheck && SpecialCheck) {
+               pSelection = specialChar ;
+        
+          } else if (!LowerCheck && !UpperCheck && NumberCheck && SpecialCheck) {
+           pSelection = numericChar + specialChar ;
+           
+        } else if ( LowerCheck && !UpperCheck && NumberCheck && !SpecialCheck) {
+           pSelection = lowercaseAlphabetChar + numericChar ;
+           
+        } else if (!LowerCheck && UpperCheck && NumberCheck && !SpecialCheck) {
+           pSelection = uppercaseAlphabetChar + numericChar ;
+           
+        } else if (!LowerCheck && UpperCheck && !NumberCheck && SpecialCheck) {
+           pSelection = uppercaseAlphabetChar + specialChar ;
+           
+        } else if ( LowerCheck && !UpperCheck && !NumberCheck && SpecialCheck) {
+           pSelection = lowercaseAlphabetChar + specialChar ;
+                   
+        } else {
+            pSelection = lowercaseAlphabetChar + uppercaseAlphabetChar + numericChar + specialChar;
+                    
+        } 
+        
+    } else {
+        window.alert ("Length should be between 8 to 128. Please Try Again") ;
+        return;
+    } 
+    // loop for random select
+    for (var l = 0; l <= lengthIP ; l ++) {
+
+        password += pSelection.charAt((Math.floor(Math.random()* pSelection.length-1)));
+    } 
+
+    return password;
+    
 }
 
-// writePassword now connected with the generate password button
-generateBtn.addEventListener("click", () => {
-  writePassword();
-});
+function alertWindow () {
+    window.alert (password);
+}
+

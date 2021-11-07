@@ -1,24 +1,34 @@
-# Password Generator
+# challenge-3
 
-## Purpose
+3. JavaScript Challenge: Password Generator
 
-Password generator allows you to input the criteria you need for a password and creates one for you
+User Story
 
-## Installation
+AS AN employee with access to sensitive data
+I WANT to randomly generate a password that meets certain criteria
+SO THAT I can create a strong password that provides greater security
 
-[You can pull the link to my portfolio from here:](   )
+Acceptance Criteria
 
-[My portfolio is published here:](   )
+GIVEN I need a new, secure password
 
-## Website Screenshots
-![Default](./assets/images/pg.PNG)
-![Prompt](./assets/images/pg1.PNG)
-![Generated Password](./assets/images/pg2.PNG)
+WHEN I click the button to generate a password
+THEN I am presented with a series of prompts for password criteria
 
-## Built with
-    * Javascript
-    * HTML
-    * CSS
-## Created by:
+WHEN prompted for password criteria
+THEN I select which criteria to include in the password
 
-Arslan Razi
+WHEN prompted for the length of the password
+THEN I choose a length of at least 8 characters and no more than 128 characters
+
+WHEN asked for character types to include in the password
+THEN I confirm whether or not to include lowercase, uppercase, numeric, and/or special characters
+
+WHEN I answer each prompt
+THEN my input should be validated and at least one character type should be selected
+
+WHEN all prompts are answered
+THEN a password is generated that matches the selected criteria
+
+WHEN the password is generated
+THEN the password is either displayed in an alert or written to the page
